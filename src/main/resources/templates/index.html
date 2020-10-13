@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <script th:src="@{/ajax.js}"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>City Management</title>
+</head>
+<body>
+    <h3 style="float: left">Cities List </h3>
+    <button type="button" class="btn" style="float: right"><a href="/add" style="text-decoration: none">Add New City</a></button>
+    <th:block th:if="${messageStatus}">
+        <div th:text="${messageStatus}"></div>
+    </th:block>
+    <table class="table">
+        <tr>
+            <td>Id</td>
+            <td>City</td>
+            <td>Country</td>
+            <td colspan="2">Action</td>
+        </tr>
+        <tr th:each="city: ${cities}" th:id="'city'+${city.id}">
+            <td th:text="${city.id}"></td>
+            <td><a th:href="@{/detail/__${city.id}__}" th:text="${city.name}"></a></td>
+            <td th:text="${city.country.name}"></td>
+            <td><a th:href="@{/edit/__${city.id}__}">Edit</a></td>
+            <td><button th:onclick="'deleteCity(\'' + ${city.id} + '\')'" class="btn btn-danger" type="button" >Delete</button></td>
+        </tr>
+    </table>
+</body>
+</html>

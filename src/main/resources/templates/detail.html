@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Detail City</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script th:src="@{/ajax.js}"></script>
+</head>
+<body>
+    <h3 th:text="${city.name}" style="float: left"></h3>
+    <button type="button"><a href="/" style="text-decoration: none">Back</a></button>
+    <div>
+    <table>
+        <tr><p>Name: <span th:text="${city.name}"></span></p></tr>
+        <tr><p>Country: <span th:text="${city.country.name}"></span></p></tr>
+        <tr><p>Area: <span th:text="${city.area}"></span></p></tr>
+        <tr><p>Population: <span th:text="${city.population}"></span></p></tr>
+        <tr><p>GDP: <span th:text="${city.GDP}"></span></p></tr>
+        <tr><p>GDP: <span th:text="${city.description}"></span></p></tr>
+    </table>
+    </div>
+    <div>
+    <button type="button"><a th:href="@{/edit/__${city.id}__}">Edit</a></button>
+    <button type="button" th:onclick="'deleteCity(\'' + ${city.id} + '\')'" >Delete</button>
+    </div>
+</body>
+</html>

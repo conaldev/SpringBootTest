@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Add NewCity</title>
+</head>
+<body>
+<form action="/add" method="post" th:object="${city}">
+    <table class="table">
+        <tr>
+            <td>Name:</td>
+            <td><input type="text" th:field="*{name}" required></td>
+        </tr>
+        <tr>
+            <td>Country</td>
+            <td><select th:field="*{country}">
+                <option th:each="c:${countries}" th:value="${c.id}" th:text="${c.name}"></option>
+            </select>
+        </tr>
+        <tr>
+            <td>Area</td>
+            <td><input type="number" th:field="*{area}" required></td>
+        </tr>
+        <tr>
+            <td>Population</td>
+            <td><input type="number" th:field="*{population}" required></td>
+        </tr>
+        <tr>
+            <td>GDP</td>
+            <td><input type="number" th:field="*{GDP}" required></td>
+        </tr>
+        <tr>
+            <td>Description</td>
+            <td><textarea th:field="*{description}" required></textarea></td>
+        </tr>
+    </table>
+    <button type="submit" class="btn btn-primary">Update</button>
+</form>
+<button type="button"><a href="/" style="text-decoration: none">Cancel</a></button>
+</body>
+</html>
